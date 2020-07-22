@@ -3,16 +3,18 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="task1backend.php" method="post">
+    <form action="" method="post">
         Name <br>
-        <input type="text" name="name"> <br>
+        <input type="text" name="name" value=""> <br>
+        <?php ?>
         <button type="submit">Submit</button>
     </form>
 </body>
 </html>
 
 <?php
-    if($_POST.count() != 0){
-        print_r($_POST);
+    if (!empty($_POST)) {
+        $name = $_POST["name"];
+        
     }
 ?>
