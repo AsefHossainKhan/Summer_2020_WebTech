@@ -10,3 +10,9 @@
     </form>
 </body>
 </html>
+
+<?php
+    if($_POST.count() != 0){
+        print_r($_POST);
+    }
+?>
