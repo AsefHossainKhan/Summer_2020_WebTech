@@ -52,10 +52,10 @@
             <tr>
                 <td>Degree</td>
                 <td>
-                    <input type="checkbox">SSC
-                    <input type="checkbox">HSC
-                    <input type="checkbox">BSc.
-                    <input type="checkbox">MSc.
+                    <input type="checkbox" name="SSC">SSC
+                    <input type="checkbox" name="HSC">HSC
+                    <input type="checkbox" name="BSC">BSc.
+                    <input type="checkbox" name="MSC">MSc.
                 </td>
                 <td></td>
             </tr>
@@ -129,6 +129,13 @@
         }
     }
 
+    //DEGREE CHECK METHOD
+    function checkDegree() {
+        if(empty($_POST["SSC"]) && empty($_POST["HSC"]) && empty($_POST["BSC"]) && empty($_POST["MSC"])) {
+            echo "One degree must be selected";
+        }
+    }
+
     if(isset($_POST["submitButton"])) {
         $name = $_POST["name"];
         $email = $_POST["email"];
@@ -140,6 +147,7 @@
         //checkName($name);
         //checkEmail($email);
         //checkGender();
-        checkDateOfBirth($day,$month,$year);
+        //checkDateOfBirth($day,$month,$year);
+        checkDegree();
     }
 ?>
