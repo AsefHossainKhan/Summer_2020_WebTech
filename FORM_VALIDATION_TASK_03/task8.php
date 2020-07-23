@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <td>Email</td>
-                <td><input type="text" email="email"></td>
+                <td><input type="text" name="email"></td>
                 <td></td>
             </tr>
             <tr>
@@ -80,7 +80,7 @@
 </html>
 
 <?php 
-    //NAME CHECK METHODS
+    //NAME CHECK METHOD
     function checkName($name) {
         if($name == "") {
             echo "Name cannot be empty";
@@ -100,13 +100,24 @@
                 echo "Must contain alphabets, . , - only";
             }
         }
-        
+    }
+
+    //EMAIL CHECK METHOD
+    function checkEmail($email) {
+        if($email == ""){
+            echo "Email cannot be empty";
+        }
+        else if (!strpos($email,"@") || !strpos($email,".com")) {
+            echo "Enter a valid email";
+        }
     }
 
 
 
     if(isset($_POST["submitButton"])) {
         $name = $_POST["name"];
-        checkName($name);
+        $email = $_POST["email"];
+        //checkName($name);
+        checkEmail($email);
     }
 ?>

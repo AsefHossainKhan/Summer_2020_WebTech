@@ -20,7 +20,7 @@
         if($email == ""){
             echo "Email cannot be empty";
         }
-        else if (!strpos($email,"@") && !strpos($email,".com")) {
+        else if (!strpos($email,"@") || !strpos($email,".com")) {
             echo "Enter a valid email";
         }
     }
