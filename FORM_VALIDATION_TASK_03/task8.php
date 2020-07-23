@@ -4,19 +4,19 @@
     <title>Person Profile</title>
 </head>
 <body>
-    <form>
+    <form action="" method="post">
         <table border= "1">
             <tr>
                 <td colspan="3"><center><h3>PERSON PROFILE</h3></center></td>
             </tr>
             <tr>
                 <td>Name</td>
-                <td><input type="text"></td>
+                <td><input type="text" name="name"></td>
                 <td width="20px"></td>
             </tr>
             <tr>
                 <td>Email</td>
-                <td><input type="text"></td>
+                <td><input type="text" email="email"></td>
                 <td></td>
             </tr>
             <tr>
@@ -68,7 +68,7 @@
             </tr>
             <tr>
                 <td colspan="3" align="right">
-                    <Button type="submit" >Submit</Button>
+                    <Button type="submit" name="submitButton">Submit</Button>
                     <button type="reset">Reset</button>
                 </td>
             </tr>
@@ -78,3 +78,35 @@
     
 </body>
 </html>
+
+<?php 
+    //NAME CHECK METHODS
+    function checkName($name) {
+        if($name == "") {
+            echo "Name cannot be empty";
+        }
+        else if(!ctype_alpha($name[0])) {
+            echo "First letter must be an alphabet";
+        }
+        else if(!strpos($name, ' ')) {
+            echo "Must have at least two words";
+        }
+        else {
+            $nameChecker = $name;
+            $nameChecker = str_replace(' ','',$nameChecker);
+            $nameChecker = str_replace('-','',$nameChecker);
+            $nameChecker = str_replace('.','',$nameChecker);
+            if(!ctype_alpha($nameChecker)) {
+                echo "Must contain alphabets, . , - only";
+            }
+        }
+        
+    }
+
+
+
+    if(isset($_POST["submitButton"])) {
+        $name = $_POST["name"];
+        checkName($name);
+    }
+?>

@@ -25,10 +25,14 @@
         return false;
     }
     function checkAllCharacter($x) {
-        if (ctype_alpha($x) || $x == '.' || $x == '-') {
-            return false;
+        $nameChecker = $name;
+        $nameChecker = str_replace(' ','',$nameChecker);
+        $nameChecker = str_replace('-','',$nameChecker);
+        $nameChecker = str_replace('.','',$nameChecker);
+        if(!ctype_alpha($nameChecker)) {
+            return true;
         }
-        return true;
+        return false;
     }
     if (!empty($_POST)) {
         $name = $_POST["name"];
