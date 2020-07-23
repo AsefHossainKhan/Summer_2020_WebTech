@@ -21,9 +21,9 @@
             </tr>
             <tr>
                 <td>Gender</td>
-                <td><input type="radio" name="gender">Male
-                    <input type="radio" name="gender">Female
-                    <input type="radio" name="gender">Other</td>
+                <td><input type="radio" name="gender" value="Male">Male
+                    <input type="radio" name="gender" value="Female">Female
+                    <input type="radio" name="gender" value="Other">Other</td>
                 <td></td>
             </tr>
             <tr>
@@ -112,12 +112,21 @@
         }
     }
 
+    //GENDER CHECK METHOD
+    function checkGender() {
+        if (!isset($_POST["gender"])) {
+            echo "Must select a gender";
+        }
+    }
 
+    //
 
     if(isset($_POST["submitButton"])) {
         $name = $_POST["name"];
         $email = $_POST["email"];
         //checkName($name);
-        checkEmail($email);
+        //checkEmail($email);
+        //checkGender();
+
     }
 ?>
