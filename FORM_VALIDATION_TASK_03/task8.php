@@ -61,7 +61,7 @@
             </tr>
             <tr>
                 <td>Photo</td>
-                <td colspan="2"><input type="file"></td>
+                <td colspan="2"><input type="file" name="file"></td>
             </tr>
             <tr>
                 <td colspan="3" height="25px"></td>
@@ -136,6 +136,17 @@
         }
     }
 
+    //BLOOD GROUP CHECK METHOD
+    function checkBloodGroup() {
+        //DIDNT NEED TO DO ANYTHING
+    }
+
+    function checkFile() {
+        if(empty($_POST["file"])) {
+            echo "choose a file";
+        }
+    }
+
     if(isset($_POST["submitButton"])) {
         $name = $_POST["name"];
         $email = $_POST["email"];
@@ -148,6 +159,8 @@
         //checkEmail($email);
         //checkGender();
         //checkDateOfBirth($day,$month,$year);
-        checkDegree();
+        //checkDegree();
+        //checkBloodGroup();
+        checkFile();
     }
 ?>
