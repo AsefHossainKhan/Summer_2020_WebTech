@@ -7,7 +7,19 @@
 </head>
 <body>
     <form action="" method="post">    
-        
+        Blood Group
+        <Select name="bloodGroup">
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+        </Select>
+        <br>
+        <hr>
         <button type="submit" name="submitButton">Submit</button>
     </form>
 </body>
@@ -16,9 +28,7 @@
 
 <?php
     if (isset($_POST["submitButton"])) {
-        if(empty($_POST["SSC"]) && empty($_POST["HSC"]) && empty($_POST["BSC"])) {
-            echo "One degree must be selected";
-        }
-
+        $bloodGroup = $_POST["bloodGroup"];
+        echo $bloodGroup;
     }
 ?>
