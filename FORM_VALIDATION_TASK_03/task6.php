@@ -7,12 +7,7 @@
 </head>
 <body>
     <form action="" method="post">    
-        <fieldset>
-            <legend>Degree</legend>
-            <input type="checkbox" name="SSC">SSC
-            <input type="checkbox" name="HSC">HSC
-            <input type="checkbox" name="BSC">BSc.
-        </fieldset>
+        
         <button type="submit" name="submitButton">Submit</button>
     </form>
 </body>
