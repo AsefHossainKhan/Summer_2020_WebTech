@@ -28,9 +28,9 @@
             </tr>
             <tr>
                 <td>Date Of Birth</td>
-                <td><input type="value" maxlength="2" size="1">/
-                    <input type="value" maxlength="2" size="1">/
-                    <input type="value" maxlength="4" size="1"> <i>(dd/mm/yyyy)</i></td>
+                <td><input type="number" maxlength="2" size="1" name="day" value="">/
+                    <input type="number" maxlength="2" size="1" name="month" value="">/
+                    <input type="number" maxlength="4" size="1" name="year" value=""> <i>(dd/mm/yyyy)</i></td>
                 <td></td>
             </tr>
             <tr>
@@ -119,14 +119,27 @@
         }
     }
 
-    //
+    //DATE OF BIRTH CHECK METHOD
+    function checkDateOfBirth($day,$month,$year) {
+        if($day == "" || $month == "" || $year == "") {
+            echo "Date fields cannot be empty";
+        }
+        else if(!($day>= 1 && $day<=31 && $month>=1 && $month<=12 && $year>=1900 && $year<=2016)) {
+            echo "Enter a valid day/month/year";
+        }
+    }
 
     if(isset($_POST["submitButton"])) {
         $name = $_POST["name"];
         $email = $_POST["email"];
+        $day = $_POST["day"];
+        $month = $_POST["month"];
+        $year = $_POST["year"];
+
+
         //checkName($name);
         //checkEmail($email);
         //checkGender();
-
+        checkDateOfBirth($day,$month,$year);
     }
 ?>

@@ -29,10 +29,10 @@
         if($day == "" || $month == "" || $year == "") {
             echo "Date fields cannot be empty";
         }
-        else if(!($day>= 1 && $day<=31 || $month>=1 && $month<=12 || $year>=1900 && $year<=2016)) {
+        else if(!($day>= 1 && $day<=31 && $month>=1 && $month<=12 && $year>=1900 && $year<=2016)) {
             echo "Enter a valid day/month/year";
         }
-
+        
     }
 ?>
 
