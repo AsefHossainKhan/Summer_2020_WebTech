@@ -13,8 +13,9 @@
             <input type="number" size="1" maxlength="2" name="day">/
             <input type="number" size="1" maxlength="2" name="month">/
             <input type="number" size="1" maxlength="4" name="year">
+            <hr>
+            <button type="submit">Submit</button>
         </fieldset>
-        <button type="submit">Submit</button>
     </form>
 </body>
 </html>
