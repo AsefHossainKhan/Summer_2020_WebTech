@@ -28,10 +28,10 @@
                 <ul>
                     <li><a href="">Dashboard</a></li>
                     <li><a href="profile.php">View Profile</a></li>
-                    <li><a href="">Edit Porfile</a></li>
+                    <li><a href="edit_profile.php">Edit Porfile</a></li>
                     <li><a href="">Change Profile Picture</a></li>
                     <li><a href="">Change Password</a></li>
-                    <li><a href="">Logout</a></li>
+                    <li><a href="login.html">Logout</a></li>
                 </ul>
             </td>
             <td>
