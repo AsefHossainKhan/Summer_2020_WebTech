@@ -28,6 +28,10 @@
             $_SESSION["year"] = $year;
 
             //echo "Registration Successful";
+            header ("location: login.html");
+            // echo $username;
+            // echo $password;
+
         }
 
     }
