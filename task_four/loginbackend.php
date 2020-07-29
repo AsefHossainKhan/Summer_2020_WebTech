@@ -5,7 +5,7 @@
         $password = $_POST["password"];
 
         if ($username == $_SESSION["username"] && $password == $_SESSION["password"]) {
-            echo "login succeessful";
+            header("location: loggedInDashboard.php");
         }
         else {
             echo "username/password incorrect";

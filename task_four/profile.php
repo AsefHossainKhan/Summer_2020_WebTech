@@ -12,12 +12,14 @@
 <body>
     <table border="1" width="1000px">
         <tr>
-            <td colspan="2">
+            <td>
                 <img src="logo.png" alt="company logo" height="50px" width="150px">
-                <p style="text-align:right">Logged in as <a href="">
+            </td>
+            <td>
+            <p style="text-align:right">Logged in as <a href="">
                     <?php echo $_SESSION["name"];?>
                 </a> | <a href="">Logout</a></p>
-            </td>
+            </td>   
         </tr>
         <tr>
             <td width="30%">
@@ -37,29 +39,27 @@
                     <legend>Profile</legend>
                     <table>
                         <tr>
-                            <td>Name: </td>
-                            <td><?php echo $_SESSION["name"];?></td>
+                            <td>Name: <hr></td>
+                            <td><?php echo $_SESSION["name"];?> <hr></td>
+                            <td rowspan="4"> <img src="user.png" alt="user logo" height="150px" width="150px"> <br> <center><a href="" >Change</a></center></td>
+                        </tr>
+                        <tr>
+                            <td>Email: <hr></td>
+                            <td><?php echo $_SESSION["email"];?> <hr></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>Email: </td>
-                            <td><?php echo $_SESSION["email"];?></td>
+                            <td>Gender: <hr></td>
+                            <td><?php echo $_SESSION["gender"];?> <hr></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>Gender: </td>
-                            <td><?php echo $_SESSION["gender"];?></td>
+                            <td>Date Of Birth: <hr></td>
+                            <td><?php echo $_SESSION["dateOfBirth"];?> <hr></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><a href="">Edit Profile</a></td>
                         </tr>
 
                     </table>

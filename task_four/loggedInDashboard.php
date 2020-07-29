@@ -10,14 +10,16 @@
     <title>Logged In Dashboard</title>
 </head>
 <body>
-    <table border="1" width="1000px">
+    <table border="1px" width="1000px">
         <tr>
-            <td colspan="2">
+            <td>
                 <img src="logo.png" alt="company logo" height="50px" width="150px">
-                <p style="text-align:right">Logged in as <a href="">
+            </td>
+            <td>
+            <p style="text-align:right">Logged in as <a href="">
                     <?php echo $_SESSION["name"];?>
                 </a> | <a href="">Logout</a></p>
-            </td>
+            </td>   
         </tr>
         <tr>
             <td width="30%">
