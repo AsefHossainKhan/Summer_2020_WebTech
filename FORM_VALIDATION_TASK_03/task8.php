@@ -155,12 +155,12 @@
         $year = $_POST["year"];
 
 
-        //checkName($name);
-        //checkEmail($email);
-        //checkGender();
-        //checkDateOfBirth($day,$month,$year);
-        //checkDegree();
-        //checkBloodGroup();
+        checkName($name);
+        checkEmail($email);
+        checkGender();
+        checkDateOfBirth($day,$month,$year);
+        checkDegree();
+        checkBloodGroup();
         checkFile();
     }
 ?>
