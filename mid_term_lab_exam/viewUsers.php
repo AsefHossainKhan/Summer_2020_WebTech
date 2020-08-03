@@ -37,6 +37,9 @@
                     </tr>";
             }
         ?>
+        <tr>
+            <td colspan = "4" align="right"><a href="">Go Home</a></td>
+        </tr>
 
     </table>
 </body>

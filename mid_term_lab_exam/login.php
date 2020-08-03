@@ -52,8 +52,16 @@
                 $user = explode('|', $data);
 
                 if($id == trim($user[0]) && $password == trim($user[1])) {
-                    echo "login Successful";
-                    break;
+                    session_start();
+                    $_SESSION["name"] = $user[2];
+                    if(trim($user[4]) == "User") {
+                        header("Location: userHomePage.php");
+                    }
+                    else {
+                        header("Location: adminHomePage.php");
+
+                    }
+
                 }
                 else {
                     echo "username/password wrong";
