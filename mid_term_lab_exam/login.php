@@ -54,12 +54,15 @@
                 if($id == trim($user[0]) && $password == trim($user[1])) {
                     session_start();
                     $_SESSION["name"] = $user[2];
+                    $_SESSION["id"] = $user[0];
+                    $_SESSION["email"] = $user[3];
+                    $_SESSION["userType"] = $user[4];
+
                     if(trim($user[4]) == "User") {
                         header("Location: userHomePage.php");
                     }
                     else {
                         header("Location: adminHomePage.php");
-
                     }
 
                 }

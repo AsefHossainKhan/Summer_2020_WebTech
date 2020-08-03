@@ -7,11 +7,16 @@
 </head>
 <body>
     <center>
-        <h1>WELCOME!</h1>
-        <a href="">Profile</a><br>
-        <a href="">Change Passowrd</a><br>
-        <a href="">View Users</a><br>
-        <a href="">Logout</a><br>
+        <h1>WELCOME  
+            <?php 
+                session_start();
+                echo $_SESSION["name"];
+            ?>
+        !</h1>
+        <a href="profile.php">Profile</a><br>
+        <a href="forgotPassword.php">Change Passowrd</a><br>
+        <a href="viewUsers.php">View Users</a><br>
+        <a href="login.php">Logout</a><br>
     </center>
 
     
