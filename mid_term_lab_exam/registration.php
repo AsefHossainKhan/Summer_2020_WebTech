@@ -85,6 +85,7 @@
             $user = $id."|".$password."|".$name."|".$email."|".$userType.PHP_EOL;
             fwrite($file, $user);
 
+            header("Location: login.php");
         }
     }
 ?>
