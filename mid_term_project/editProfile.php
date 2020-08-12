@@ -1,34 +1,50 @@
 <?php
+    session_start();
+
+    //CHECK IF THE USER IS ALREADY LOGGED IN OR NOT
+    if(isset($_SESSION["loginStatus"])) {
+        //everything is good if it goes here
+    }
+    else if(isset($_COOKIE["rememberMeEmail"])) {
+        $_SESSION["currentLink"] = "home.php";
+        header("Location: rememberMe.php");
+    }
+    else {
+        header("Location: login.php");
+    }
+?>
+
+<?php
     ob_start();
     //DATABASE CONNECTION
     $connection = mysqli_connect('127.0.0.1', 'root', '', 'coaching');
 
 
     //INITIALIZING VARIABLES
-    $name = "";
+    $name = $_SESSION["name"];
     $nameBool = false;
-    $password = "";
+    $password = $_SESSION["password"];
     $passwordBool = false;
-    $confirmPassword = "";
-    $email = "";
+    $confirmPassword = $_SESSION["password"];
+    $email = $_SESSION["email"];
     $emailBool = false;
-    $gender = "";
+    $gender = $_SESSION["gender"];
     $genderBool = false;
-    $mobileNumber = "";
+    $mobileNumber = $_SESSION["mobileNumber"];
     $mobileNumberBool = false;
-    $primaryRole = "";
+    $primaryRole = $_SESSION["primaryRole"];
     $primaryRoleBool = false;
-    $mmr = "";
+    $mmr = $_SESSION["mmr"];
     $mmrBool = false;
-    $steamLink = "";
+    $steamLink = $_SESSION["steamLink"];
     $steamLinkBool = false;
-    $dotabuffLink = "";
+    $dotabuffLink = $_SESSION["dotabuffLink"];
     $dotabuffLinkBool = false;
-    $achievements ="";
+    $achievements = $_SESSION["achievements"];
     $achievementsBool = false;
-    $fees = "";
+    $fees = $_SESSION["fees"];
     $feesBool = false;
-    $schedule = "";
+    $schedule = $_SESSION["schedule"];
     $scheduleBool = false;
 
     $buttonClicked = false;
@@ -38,7 +54,7 @@
         $name = $_POST["name"];
         $password = $_POST["password"];
         $confirmPassword = $_POST["confirmPassword"];
-        $email = $_POST["email"];
+        //$email = $_POST["email"];
         //$gender = $_POST["gender"];
         $mobileNumber = $_POST["mobileNumber"];
         $primaryRole = $_POST["primaryRole"];
@@ -192,10 +208,26 @@
         $scheduleBool = true;
     }
 
+    function genderSetter($gender) {
+		if($_SESSION["gender"] == $gender) {
+			echo "checked = \"checked\"";
+		}
+		else {
+		}
+    }
+
+    function positionSetter($primaryRole) {
+		if($_SESSION["primaryRole"] == $primaryRole) {
+			echo "selected";
+		}
+		else {
+		}
+    }
+
     function updateDatabase($name,$password,$email,$gender,$mobileNumber,$primaryRole,$mmr,$steamLink,$dotabuffLink,$achievements,$fees,$schedule) {
         global  $nameBool;
         global  $passwordBool;
-        global  $emailBool;
+        //global  $emailBool;
         global  $genderBool;
         global  $mobileNumberBool;
         global  $primaryRoleBool;
@@ -207,14 +239,15 @@
         global  $scheduleBool;
         global  $connection;
 
-        if ($nameBool && $passwordBool && $emailBool && $genderBool && $primaryRoleBool && $mmrBool && $steamLinkBool && $dotabuffLinkBool && $feesBool) {
+        if ($nameBool && $passwordBool && $genderBool && $primaryRoleBool && $mmrBool && $steamLinkBool && $dotabuffLinkBool && $feesBool) {
             $tableName = "coaches";
-            $query = "INSERT INTO $tableName (name, password, email, gender, mobilenumber, primaryrole, mmr, steamlink, dotabufflink, achievements, fees, schedule) VALUES ('$name','$password','$email','$gender','$mobileNumber','$primaryRole','$mmr','$steamLink','$dotabuffLink','$achievements','$fees','$schedule')";
-
+            //$query = "INSERT INTO $tableName (name, password, email, gender, mobilenumber, primaryrole, mmr, steamlink, dotabufflink, achievements, fees, schedule) VALUES ('$name','$password','$email','$gender','$mobileNumber','$primaryRole','$mmr','$steamLink','$dotabuffLink','$achievements','$fees','$schedule')";
+            $query = "UPDATE $tableName SET name='$name', password='$password', gender='$gender', mobilenumber='$mobileNumber', primaryrole='$primaryRole', mmr='$mmr', steamlink='$steamLink', dotabufflink='$dotabuffLink', achievements='$achievements', fees='$fees', schedule='$schedule' WHERE email='$email'";
             try {
                 mysqli_query($connection,$query);
                 mysqli_close($connection);
-                header("Location: login.php");
+                //header("Location: login.php");
+                header("Location: profile.php");
             }catch (Exception $e){
                 echo "Email already in use";
             }
@@ -230,6 +263,21 @@
         }
     }
 
+    function updateSession($name,$password,$gender,$mobileNumber,$primaryRole,$mmr,$steamLink,$dotabuffLink,$achievements,$fees,$schedule) {
+        $_SESSION["name"] = $name;
+        $_SESSION["password"] = $password;
+        //$_SESSION["email"] = $email;
+        $_SESSION["gender"] = $gender;
+        $_SESSION["mobileNumber"] = $mobileNumber;
+        $_SESSION["primaryRole"] = $primaryRole;
+        $_SESSION["mmr"] = $mmr;
+        $_SESSION["steamLink"] = $steamLink;
+        $_SESSION["dotabuffLink"] = $dotabuffLink;
+        $_SESSION["achievements"] = $achievements;
+        $_SESSION["fees"] = $fees;
+        $_SESSION["schedule"] = $schedule;
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -237,54 +285,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coach Registration Page</title>
+    <title>Edit Profile</title>
 </head>
 <body>
     <fieldset>
-        <legend><b>REGISTRATION FOR COACH</b></legend>
+        <legend><b>EDIT PROFILE</b></legend>
         <form action = "" method="post">
             <table width=100%>
                 <tr>
                     <td>Name*</td>
                     <td>:</td>
-                    <td><input type="text" value="" name="name">
+                    <td><input type="text" value=<?php echo $name; ?> name="name">
                         <?php if($buttonClicked)checkName($name); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>Password*</td>
                     <td>:</td>
-                    <td><input type="password" value="" name="password">
+                    <td><input type="password" value=<?php echo $password; ?> name="password">
                         <?php if($buttonClicked)checkPassword($password); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>Confirm Password*</td>
                     <td>:</td>
-                    <td><input type="password" value="" name="confirmPassword">
+                    <td><input type="password" value=<?php echo $confirmPassword; ?> name="confirmPassword">
                         <?php if($buttonClicked)checkConfirmPassword($confirmPassword, $password); ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Email*</td>
-                    <td>:</td>
-                    <td><input type="text" value="" name="email">
-                        <?php if($buttonClicked)checkEmail($email); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>Gender*</td>
                     <td>:</td>
-                    <td><input type="radio" name="gender" value="Male">Male
-                        <input type="radio" name="gender" value="Female">Female
-                        <input type="radio" name="gender" value="Other">Other
+                    <td><input type="radio" name="gender" <?php genderSetter("Male"); ?> value="Male">Male
+                        <input type="radio" name="gender" <?php genderSetter("Female"); ?> value="Female">Female
+                        <input type="radio" name="gender" <?php genderSetter("Other"); ?> value="Other">Other
                         <?php if($buttonClicked)checkGender(); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>Mobile Number</td>
                     <td>:</td>
-                    <td><input type="number" value="" name="mobileNumber">
+                    <td><input type="number" value=<?php echo $mobileNumber; ?> name="mobileNumber">
                         <?php if($buttonClicked)checkMobileNumber($mobileNumber); ?>
                     </td>
                 </tr>
@@ -293,11 +334,11 @@
                     <td>:</td>
                     <td>
                         <Select name="primaryRole">
-                            <option value="Pos1">Position 1</option>
-                            <option value="Pos2">Position 2</option>
-                            <option value="Pos3">Position 3</option>
-                            <option value="Pos4">Position 4</option>
-                            <option value="Pos5">Position 5</option>
+                            <option value="Pos1" <?php positionSetter("Pos1") ?>>Position 1</option>
+                            <option value="Pos2" <?php positionSetter("Pos2") ?>>Position 2</option>
+                            <option value="Pos3" <?php positionSetter("Pos3") ?>>Position 3</option>
+                            <option value="Pos4" <?php positionSetter("Pos4") ?>>Position 4</option>
+                            <option value="Pos5" <?php positionSetter("Pos5") ?>>Position 5</option>
                         </Select>
                         <?php if($buttonClicked)checkPrimaryRole(); ?>
                     </td>
@@ -305,53 +346,51 @@
                 <tr>
                     <td>MMR*</td>
                     <td>:</td>
-                    <td><input type="number" value="" name="mmr">
+                    <td><input type="number" value=<?php echo $mmr; ?> name="mmr">
                         <?php if($buttonClicked)checkMMR($mmr); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>Steam Link*</td>
                     <td>:</td>
-                    <td><input type="text" value="" name="steamLink">
+                    <td><input type="text" value=<?php echo $steamLink; ?> name="steamLink">
                         <?php if($buttonClicked)checkSteamLink($steamLink); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>Dotabuff Link*</td>
                     <td>:</td>
-                    <td><input type="text" value="" name="dotabuffLink">
+                    <td><input type="text" value=<?php echo $dotabuffLink; ?> name="dotabuffLink">
                         <?php if($buttonClicked)checkDotabuffLink($dotabuffLink); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>Achievements</td>
                     <td>:</td>
-                    <td><textarea name="achievements" id="" cols="30" rows="10"></textarea>
+                    <td><textarea name="achievements" id="" cols="30" rows="10"><?php echo $achievements; ?></textarea>
                         <?php if($buttonClicked)checkAchievements($achievements); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>Fees per hour*</td>
                     <td>:</td>
-                    <td><input type="number" value="" name="fees"> tk
+                    <td><input type="number" value=<?php echo $fees; ?> name="fees"> tk
                         <?php if($buttonClicked)checkFees($fees); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>Schedule</td>
                     <td>:</td>
-                    <td><textarea name="schedule" id="" cols="30" rows="10"></textarea>
+                    <td><textarea name="schedule" id="" cols="30" rows="10" ><?php echo $schedule; ?></textarea>
                         <?php if($buttonClicked)checkSchedule($schedule); ?>
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td><a href="profile.php">Go Back</a></td>
                     <td></td>
                     <td><input type="submit" value="Submit" name="submitButton"></td>
                 </tr>
             </table>
-            Already a User? 
-            <a href="login.php">Login</a>
         </form>
     </fieldset>
 </body>
@@ -359,6 +398,8 @@
 
 <?php
     if($buttonClicked) {
+        updateSession ($name,$password,$gender,$mobileNumber,$primaryRole,$mmr,$steamLink,$dotabuffLink,$achievements,$fees,$schedule);
         updateDatabase ($name,$password,$email,$gender,$mobileNumber,$primaryRole,$mmr,$steamLink,$dotabuffLink,$achievements,$fees,$schedule);
+        
     }
 ?>
