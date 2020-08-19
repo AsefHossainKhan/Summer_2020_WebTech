@@ -66,6 +66,8 @@
 </html>
 
 <?php
+
+
     if(isset($_POST["registerButton"])) {
         $id = $_POST["id"];
         $password = $_POST["password"];
