@@ -1,7 +1,7 @@
 <?php
-	require_once('../service/userService.php');
+	require_once('../service/productService.php');
 
-	//create new user
+	//create new product
 	if(isset($_POST['create'])){
 		$name = $_POST['name'];
 		$description = $_POST['description'];
@@ -11,19 +11,25 @@
         $status = $_POST['status'];
         $filedir = '../res/'.$name.'.jpg';
 
-		if(empty($name) || empty($password) || empty($email)){
-			header('location: ../views/create.php?error=null');
+		if(empty($name) || empty($description) || empty($quantity) || empty($date) || empty($price) || empty($status)){
+			header('location: ../views/create_product.php?error=null');
 		}else{
-			$user = [
-				'username'	=>$username,
-				'password'	=>$password,
-				'email'		=>$email
+			$product = [
+				'name' =>$name,
+				'description' =>$description,
+				'quantity' =>$quantity,
+				'date' =>$date,
+				'price' =>$price,
+				'status' =>$status,
+				'filedir' =>$filedir
 			];
-			$status = create($user);
+			$status = create($product);
+			move_uploaded_file($_FILES['image']['tmp_name'], $filedir);
+
 			if($status){
-				header('location: ../views/user_list.php?msg=success');
+				header('location: ../views/product_list.php?msg=success');
 			}else{
-				header('location: ../views/create.php?error=dberror');
+				header('location: ../views/create_product.php?error=dberror');
 			}
 		}	
 	}

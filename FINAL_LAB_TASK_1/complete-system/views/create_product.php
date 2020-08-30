@@ -15,7 +15,7 @@
 	<title>Create product</title>
 </head>
 <body>
-	<form action="../php/userController.php" method="post">
+	<form action="../php/productController.php" method="post">
 		<fieldset>
 			<legend>Create New Product</legend>
 			<table>
