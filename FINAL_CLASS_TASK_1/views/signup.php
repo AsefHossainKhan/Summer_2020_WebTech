@@ -33,7 +33,7 @@
 					<td></td>
 					<td>
 					<input type="button" name="submit" value="Submit" onclick="checkInputs()">
-					<input type="button" name="loginButton" value="Login" style="display: none" onclick="href='login.php'">
+					<input type="button" name="loginButton" value="Login" style="display: none" id='loginButton'">
 					</td>
 				</tr>
 			</table>
@@ -51,15 +51,17 @@
 			}
 			else {
 				var xhttp = new XMLHttpRequest();
-				xhttp.open('POST', 'abc.php', true);
+				xhttp.open('POST', 'test.php', true);
 				xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-				xhttp.send('name='+name);
+				xhttp.send('username='+username+'&password='+password+'&email='+email);
 				
 				//document.getElementById('msg').innerHTML = xhttp.responseText;
 				xhttp.onreadystatechange = function(){
 					if(this.readyState == 4 && this.status == 200){
-						document.getElementById('data').innerHTML =  this.responseText;
-
+						// document.getElementById('data').innerHTML =  this.responseText;
+						document.getElementsByTagName('h2')[0].innerHTML = "Success";
+						document.getElementById('loginButton').style.display = "inline";
+						console.log(document.getElementById('loginButton'));
 					}
 				}
 			}
