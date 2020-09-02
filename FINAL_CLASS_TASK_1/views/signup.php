@@ -33,7 +33,7 @@
 					<td></td>
 					<td>
 					<input type="button" name="submit" value="Submit" onclick="checkInputs()">
-					<input type="button" name="loginButton" value="Login" style="display: none" id='loginButton'">
+					<input type="button" name="loginButton" value="Login" onclick="redirect()" style="display: none" id='loginButton'>
 					</td>
 				</tr>
 			</table>
@@ -61,12 +61,16 @@
 						// document.getElementById('data').innerHTML =  this.responseText;
 						document.getElementsByTagName('h2')[0].innerHTML = "Success";
 						document.getElementById('loginButton').style.display = "inline";
-						console.log(document.getElementById('loginButton'));
+						// console.log(document.getElementById('loginButton'));
 					}
 				}
 			}
+		}
 
-
+		function redirect() {
+			//WHY DOESNT IT WORK!!
+			// window.open.href = "home.php";
+			window.location.replace("home.php");
 		}
 	</script>
 </body>
