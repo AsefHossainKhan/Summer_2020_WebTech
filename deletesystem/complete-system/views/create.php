@@ -34,6 +34,7 @@
 				<tr>
 					<td></td>
 					<td>
+					<!-- IF ANY ERROR EXISTS CHECK THE NEXT LINE -->
 						<input type="submit" name="create" value="Create">
 						<a href="home.php">Back</a>
 					</td>
