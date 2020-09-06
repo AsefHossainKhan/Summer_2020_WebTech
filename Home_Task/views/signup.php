@@ -46,23 +46,30 @@
 			var password = document.getElementById('password').value;
 			var email = document.getElementById('email').value;
 			
-			if (username == "" || password == "" || email == "") {
-				document.getElementsByTagName('h2')[0].innerHTML = "Fields cannot be empty";
-			}
-			else {
-				var xhttp = new XMLHttpRequest();
-				xhttp.open('POST', 'test.php', true);
-				xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-				xhttp.send('username='+username+'&password='+password+'&email='+email);
-				
-				//document.getElementById('msg').innerHTML = xhttp.responseText;
-				xhttp.onreadystatechange = function(){
-					if(this.readyState == 4 && this.status == 200){
-						// document.getElementById('data').innerHTML =  this.responseText;
-						document.getElementsByTagName('h2')[0].innerHTML = "Success";
-						document.getElementById('loginButton').style.display = "inline";
-						// console.log(document.getElementById('loginButton'));
+			var xhttp = new XMLHttpRequest();
+			xhttp.open('POST', 'signupBackend.php', true);
+			xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			xhttp.send('username='+username+'&password='+password+'&email='+email);
+			
+			//document.getElementById('msg').innerHTML = xhttp.responseText;
+			xhttp.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					// document.getElementById('data').innerHTML =  this.responseText;
+					if (this.responseText == "Fields cannot be empty") {
+						document.getElementsByTagName('h2')[0].innerHTML = this.responseText;
 					}
+					else if (this.responseText == "Username is not unique"){
+						document.getElementsByTagName('h2')[0].innerHTML = this.responseText;
+					}
+					else if (this.responseText == "Success") {
+						document.getElementsByTagName('h2')[0].innerHTML = this.responseText;
+						document.getElementById('loginButton').style.display = "inline";
+					}
+
+
+					// document.getElementsByTagName('h2')[0].innerHTML = this.responseText;
+
+					// console.log(document.getElementById('loginButton'));
 				}
 			}
 		}

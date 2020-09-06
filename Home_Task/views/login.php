@@ -1,25 +1,25 @@
 <?php
 	
-	if(isset($_GET['error'])){
+	// if(isset($_GET['error'])){
 
-		if($_GET['error'] == 'null'){
-			echo "username/password can't left empty...";
-		}
+	// 	if($_GET['error'] == 'null'){
+	// 		echo "username/password can't left empty...";
+	// 	}
 
-		if($_GET['error'] == 'invalid'){
-			echo "invalid username/password";
-		}
+	// 	if($_GET['error'] == 'invalid'){
+	// 		echo "invalid username/password";
+	// 	}
 
-		if($_GET['error'] == 'invalid_request'){
-			echo "invalid request...please login first..";
-		}
-	}
+	// 	if($_GET['error'] == 'invalid_request'){
+	// 		echo "invalid request...please login first..";
+	// 	}
+	// }
 
-	if(isset($_GET['msg'])){
-		if($_GET['msg'] == 'success'){
-			echo "Registration done! now you can sign in...";
-		}
-	}
+	// if(isset($_GET['msg'])){
+	// 	if($_GET['msg'] == 'success'){
+	// 		echo "Registration done! now you can sign in...";
+	// 	}
+	// }
 
 
 
