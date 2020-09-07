@@ -10,7 +10,7 @@
     <fieldset>
       <legend>Login</legend>
       Username <input type="text" id="username"> <br>
-      Password <input type="text" id="password"> <br>
+      Password <input type="password" id="password"> <br>
       <h2></h2>
       <input type="button" value="submit" onclick="checkInputs()">
     </fieldset>
@@ -32,7 +32,7 @@
 						document.getElementsByTagName('h2')[0].innerHTML = this.responseText;
 					}
 					else if (this.responseText == "Success") {
-            window.location.replace("homepage.html");
+            window.location.replace("adminHomePage.html");
 					}
           else if (this.responseText == "Incorrect Data") {
 						document.getElementsByTagName('h2')[0].innerHTML = this.responseText;
