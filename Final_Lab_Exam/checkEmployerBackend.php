@@ -20,8 +20,8 @@
       <td>".$row['company_name']."</td>
       <td>".$row['contact_no']."</td>
       <td>".$row['username']."</td>
-      <td><input type=\"button\" value=\"edit\" onlclick=\"edit()\"></td>
-      <td><input type=\"button\" value=\"delete\" onlclick=\"deletes()\"></td>
+      <td><a href=\"edit.php?id=".$row['id']."\">edit</a></td>
+      <td><a href=\"delete.php?id=".$row['id']."\">delete</a></td>
     </tr>";
   }
   echo "</table>";
