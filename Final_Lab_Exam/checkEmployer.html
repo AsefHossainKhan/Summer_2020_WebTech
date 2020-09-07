@@ -6,11 +6,29 @@
   <title>Document</title>
 </head>
 <body>
-  Search <input type="text" onkeyup="searchEmployers()">
-
+  Search <input type="text" id="search" onkeyup="searchEmployers()">
+  <p></p>
   <script>
     function searchEmployers() {
-      
+			var search = document.getElementById('search').value;
+
+      var xhttp = new XMLHttpRequest();
+			xhttp.open('POST', 'checkEmployerBackend.php', true);
+			xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			xhttp.send('search='+search);
+			xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+						document.getElementsByTagName('p')[0].innerHTML = this.responseText;
+        }
+      }
+    }
+
+    function edit() {
+      alert ("edit");
+    }
+
+    function deletes() {
+      alert ("delete");
     }
   </script>
 </body>
