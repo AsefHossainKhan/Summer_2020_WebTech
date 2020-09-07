@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="">
+    <fieldset>
+      <legend>Login</legend>
+      Username <input type="text" id="username"> <br>
+      Password <input type="text" id="password"> <br>
+      <h2></h2>
+      <input type="button" value="submit" onclick="checkInputs()">
+    </fieldset>
+  </form>
+
+  <script>
+    function checkInputs() {
+      var username = document.getElementById('username').value;
+			var password = document.getElementById('password').value;
+			
+			var xhttp = new XMLHttpRequest();
+			xhttp.open('POST', 'loginBackend.php', true);
+			xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			xhttp.send('username='+username+'&password='+password);
+			
+			xhttp.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					if (this.responseText == "Fields cannot be empty") {
+						document.getElementsByTagName('h2')[0].innerHTML = this.responseText;
+					}
+					else if (this.responseText == "Success") {
+            window.location.replace("homepage.html");
+					}
+          else if (this.responseText == "Incorrect Data") {
+						document.getElementsByTagName('h2')[0].innerHTML = this.responseText;
+          }
+				}
+			}
+    }
+  </script>
+</body>
+</html>
